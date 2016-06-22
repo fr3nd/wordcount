@@ -14,12 +14,12 @@ count = 0
 for line in sys.stdin:
     try:
         word, n = line.split()
+        if word != last_word and last_word is not None:
+            print last_word, count
+            count = int(n)
+        else:
+            count = int(n) + count
+        last_word = word
     # ignore non visible chars
     except ValueError:
         pass
-    if word != last_word and last_word is not None:
-        print last_word, count
-        count = int(n)
-    else:
-        count = int(n) + count
-    last_word = word
