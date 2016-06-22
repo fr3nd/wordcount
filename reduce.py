@@ -12,7 +12,11 @@ last_word = None
 
 count = 0
 for line in sys.stdin:
-    word, n = line.split()
+    try:
+        word, n = line.split()
+    # ignore non visible chars
+    except ValueError:
+        pass
     if word != last_word and last_word is not None:
         print last_word, count
         count = int(n)
